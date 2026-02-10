@@ -18,7 +18,7 @@ fprint () {
 
 export -f fprint
 
-( uname -sr |sed "s/-MANJARO//" | toilet $1 -f pagga.tlf --filter crop -w 90 ; echo -n ' ' ; date +%d-%m-%Y ; uptime ) | lolcat -p 9 -S 0
+( uname -sr |sed "s/-MANJARO//" | toilet $1 -f pagga.tlf --filter crop -w 90 ; echo -n ' ' ; date +%d-%m-%Y ; uptime ) | lolcat -p 200 -S 7
 
 
 alias ls="ls -a --color=auto"
@@ -26,7 +26,15 @@ alias clr="clear && source ~/.bashrc"
 alias yayf="yay -Slq | fzf --multi --preview 'yay -Sii {1}' --preview-window=down:75% | xargs -ro yay -S"
 alias cleanup='yay -Sc && yay -Scc && yay -Yc'
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
-alias mdwm="cd ~/dwm-jorink; sudo make clean install; cd -"
-alias cdwm="micro ~/dwm-jorink/config.h"
-alias mst="cd ~/dwm-st; sudo make clean install; cd -"
-alias cst="micro ~/dwm-st/config.h"
+alias class="xprop WM_CLASS"
+alias cleanup="yay -Scc; yay -Yc"
+
+alias mdwm="cd ~/repos/dwm-jorink; sudo make clean install; cd -"
+alias cdwm="micro ~/repos/dwm-jorink/config.h"
+alias mst="cd ~/repos/st-jorink; sudo make clean install; cd -"
+alias cst="micro ~/repos/st-jorink/config.h"
+alias mdmenu="cd ~/repos/dmenu-jorink; sudo make clean install; cd -"
+alias cdmenu="micro ~/repos/dmenu-jorink/config.h"
+
+
+export PATH=$PATH:/home/jorink/.spicetify
