@@ -3,28 +3,23 @@
 
 ## Prompt
 git_branch () { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /'; }
-BRANCH='\[\e[38;2;225;117;15m\]$(git_branch)\[\e[38;2;234;175;37m\]'
-#WARN='\[\e[1;41;37m\]$(if [ $? -ne 0 ]; then echo "[!!!-$?]";fi)\[\e[0m\]'
-DIR='\[\e[38;2;225;117;15m\]$(pwd | sed "s/\([^\/]\)[^\/]*\//\1\//g")\[\e[38;2;234;175;37m\]'
-HOST='\[\e[38;2;234;175;37m\]\u@\h:\[\e[0m\]'
+BRANCH='\[\e[36m\]$(git_branch)\[\e[0m\]'
 
-export PS1="$HOST$BRANCH$DIR$ "
+export PS1=$BRANCH"\[$(tput setaf 39)\]\u\[$(tput setaf 45)\]@\[$(tput setaf 51)\]\h \[$(tput setaf 195)\]\w \[$(tput sgr0)\]$ "
 
-fprint () {
-    toilet $1 -f future.tlf --filter crop -w 90 | lolcat
-}
+#uname --nodename --operating-system | figlet
+#uname -r | figlet
 
-export -f fprint
-
-( uname --nodename --operating-system |sed "s/-MANJARO//" | toilet $1 -f pagga.tlf --filter crop -w 90 ; echo -n '') | lolcat -p 200 -S 7
-( uname -r |sed "s/-MANJARO//" | toilet $1 -f pagga.tlf --filter crop -w 90 ; echo '--------------------------------------------------------------') | lolcat -p 200 -S 7
+fastfetch
 ##
 
 ## Alias
 alias ls="ls -a --color=auto"
 alias clr="clear && source ~/.bashrc"
+alias cff="clear && fastfetch"
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
-#alias yayf="yay -Slq | fzf --multi --preview 'yay -Sii {1}' --preview-window=down:75% | xargs -ro yay -S"
-#alias cleanup="yay -Scc --noconfirm; yay -Yc --noconfirm; sudo rm -r /var/cache/pacman/pkg/*"
-# Switched to paru, needs changing
+alias big="expac -H M '%m\t%n' | sort -h | nl"
+alias cleanup="paru -c; paru -Scc --noconfirm; sudo rm -r /var/cache/pacman/pkg/*"
+alias reboot="sudo reboot"
+alias poweroff="sudo poweroff"
 ##
