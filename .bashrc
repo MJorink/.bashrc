@@ -2,13 +2,7 @@
 [ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
 ## Prompt
-git_branch () { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /'; }
-BRANCH='\[\e[36m\]$(git_branch)\[\e[0m\]'
-
-export PS1=$BRANCH"\[$(tput setaf 39)\]\u\[$(tput setaf 45)\]@\[$(tput setaf 51)\]\h \[$(tput setaf 195)\]\w \[$(tput sgr0)\]$ "
-
-#uname --nodename --operating-system | figlet
-#uname -r | figlet
+PS1='\[\033[38;2;129;161;193m\]\u\[\033[0m\]@\[\033[38;2;136;192;208m\]\h\[\033[0m\]:\[\033[38;2;180;142;173m\]\w\[\033[0m\]\[\033[38;2;205;214;244m\]\$ \[\033[0m\]'
 
 fastfetch
 ##
